@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5sp"
+    android:layout_marginTop="5sp"
+    android:layout_marginRight="5sp"
+    android:layout_marginBottom="5sp"
+    >
+
+    <GridLayout
+        android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:padding="5px"
+    android:rowCount="2"
+    android:columnCount="3"
+        >
+
+        <ImageView
+            android:id="@+id/imageView"
+
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:padding="5sp"
+            app:srcCompat="@drawable/folder" />
+        <TextView
+            android:id="@+id/textViewRow"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/blue_500"
+            android:padding="5sp"/>
+<RelativeLayout
+    android:layout_width="40sp"
+    android:layout_height="40sp"
+        >
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:background="@drawable/circular_shape"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/progressbar"
+            android:textAlignment="center" />
+        <TextView
+            android:id="@+id/textProgressRow"
+            android:layout_height="40sp"
+            android:layout_width="40sp"
+            android:layout_centerVertical="true"
+                android:gravity="center"
+            android:text="---"
+            android:textColor="@color/blue_500"
+            android:textSize="12sp"
+            />
+</RelativeLayout>
+    </GridLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>
