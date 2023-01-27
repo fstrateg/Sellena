@@ -4,27 +4,43 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<TaskItem> items;
+    private DBHelper dbHelper;
+    SQLiteDatabase dbo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadValues();
-        RecyclerView view=findViewById(R.id.idRecycler);
-        TaskAdapter adapter=new TaskAdapter(this,items);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        RecyclerView view=findViewById(R.id.idRecycler);
         view.setLayoutManager(linearLayoutManager);
-        view.setAdapter(adapter);
+
+        dbHelper = new DBHelper(getApplicationContext());
     }
 
-    private void loadValues() {
-        items=new ArrayList<>();
-        items.add(new TaskItem("Начисление рекламы",85));
-        items.add(new TaskItem("Начисление НДС", 55));
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        dbo=dbHelper.getWritableDatabase();
+        Cursor c=dbo.rawQuery("select * from task order by tab", null);
+        ArrayList<TaskItem> items = new ArrayList<>();
+        while (c.moveToNext())
+        {
+            items.add(new TaskItem(c.getString(1), c.getInt(2)));
+        }
+        c.close();
+        dbo.close();
+        TaskAdapter adapter=new TaskAdapter(this,items);
+        RecyclerView view=findViewById(R.id.idRecycler);
+        view.setAdapter(adapter);
     }
 }
