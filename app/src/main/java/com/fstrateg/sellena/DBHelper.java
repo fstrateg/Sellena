@@ -30,30 +30,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private void createData()
     {
-        int i=0;
-        TaskItem item=new TaskItem("Загрузка с базы данных",68);
-        item.Tab = i++;
-        addTask(item);
-
-        item=new TaskItem("Добавление задачи",1);
-        item.Tab = i++;
-        addTask(item);
-
-        item=new TaskItem("Форма подзадач",1);
-        item.Tab = i++;
-        addTask(item);
-
-        item=new TaskItem("Управление процессом выполнения",2);
-        item.Tab = i++;
-        addTask(item);
-
-        item=new TaskItem("Расчет процентов по дочерним элементам",0);
-        item.Tab = i++;
-        addTask(item);
-
-        item=new TaskItem("Признак выполнения",0);
-        item.Tab = i;
-        addTask(item);
+        String[] tasks=new String[]{
+                "Загрузка с базы данных:68",
+                "Добавление задачи:1",
+                "Форма подзадач:1",
+                "Управление процессом выполнения:2",
+                "Расчет процентов по дочерним элементам:0",
+                "Признак выполнения:0"
+        };
+        TaskItem item;
+        String[] t;
+        for (int n=0;n<tasks.length;n++)
+        {
+            t=tasks[n].split(":");
+            item = new TaskItem(t[0],Integer.parseInt(t[1]));
+            item.Tab=n;
+            addTask(item);
+        }
     }
 
     private void addTask(TaskItem item)

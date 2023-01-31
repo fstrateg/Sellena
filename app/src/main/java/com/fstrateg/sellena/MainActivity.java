@@ -4,9 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -24,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
         view.setLayoutManager(linearLayoutManager);
 
         dbHelper = new DBHelper(getApplicationContext());
+        FloatingActionButton addBtn=(FloatingActionButton)findViewById(R.id.addBtn);
+        addBtn.setOnClickListener((View v) -> {
+                addNew();
+                Log.i("text","test");
+        });
     }
 
     @Override
@@ -42,5 +52,11 @@ public class MainActivity extends AppCompatActivity {
         TaskAdapter adapter=new TaskAdapter(this,items);
         RecyclerView view=findViewById(R.id.idRecycler);
         view.setAdapter(adapter);
+    }
+
+    private void addNew()
+    {
+        Intent intent=new Intent(this, TaskActivity.class);
+        startActivity(intent);
     }
 }
