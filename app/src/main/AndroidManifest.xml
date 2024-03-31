@@ -19,6 +19,11 @@
             android:label="Sellena"
             android:theme="@style/Theme.Sellena" />
         <activity
+            android:name=".PrjActivity"
+            android:exported="false"
+            android:label="Sellena"
+            android:theme="@style/Theme.Sellena" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

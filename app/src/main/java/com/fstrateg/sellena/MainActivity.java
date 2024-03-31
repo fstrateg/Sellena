@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void addNew()
     {
-        Intent intent=new Intent(this, TaskActivity.class);
+        Intent intent=new Intent(this, PrjActivity.class);
         startActivity(intent);
     }
 }
